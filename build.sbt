@@ -5,7 +5,8 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.12.1",
   licenses += ("GPL", url("https://www.gnu.org/licenses/gpl.txt")),
   version := "0.0.1",
-  scalacOptions ++= Seq("-deprecation", "-feature")
+  scalacOptions ++= Seq("-deprecation", "-feature"),
+  version in webpack := "2.2.1"
 )
 
 lazy val commonFacadeSettings = {
@@ -33,6 +34,15 @@ lazy val stemmer = project
   .settings(
     npmDependencies in Compile ++= Seq(
       "stemmer" → "1.0.0"
+    )
+  )
+  .enablePlugins(ScalaJSBundlerPlugin)
+
+lazy val stopwords = project
+  .settings(commonFacadeSettings: _*)
+  .settings(
+    npmDependencies in Compile ++= Seq(
+      "stopwords-json" → "1.1.0"
     )
   )
   .enablePlugins(ScalaJSBundlerPlugin)

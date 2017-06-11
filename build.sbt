@@ -1,8 +1,7 @@
-scalaVersion in ThisBuild := "2.12.2",
-
 lazy val commonSettings = Seq(
   licenses += ("GPL", url("https://www.gnu.org/licenses/gpl.txt")),
-  version := "0.0.3",
+  version := "0.0.4",
+  scalaVersion in ThisBuild := "2.12.2",
   scalacOptions ++= Seq("-deprecation", "-feature", "-Xlint"),
   description := "a collection of scalajs facades and utilities",
   organization := "my.will.be.done"

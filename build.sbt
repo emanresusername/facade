@@ -1,7 +1,8 @@
+scalaVersion in ThisBuild := "2.12.2",
+
 lazy val commonSettings = Seq(
-  scalaVersion := "2.12.2",
   licenses += ("GPL", url("https://www.gnu.org/licenses/gpl.txt")),
-  version := "0.0.2",
+  version := "0.0.3",
   scalacOptions ++= Seq("-deprecation", "-feature", "-Xlint"),
   description := "a collection of scalajs facades and utilities",
   organization := "my.will.be.done"
@@ -50,6 +51,16 @@ lazy val nodesaver = project
   .dependsOn(filesaver)
   .enablePlugins(ScalaJSBundlerPlugin)
 
+lazy val d3cloud = project
+  .settings(commonSettings)
+  .settings(
+    name := "facade-d3-cloud",
+    npmDependencies in Compile ++= Seq(
+      "d3-cloud" → "1.2.4"
+    )
+  )
+  .enablePlugins(ScalaJSBundlerPlugin)
+
 lazy val root = project
   .in(file("."))
-  .aggregate(stemmer, filesaver, nodesaver, stopwords)
+  .aggregate(stemmer, filesaver, nodesaver, stopwords, d3cloud)
